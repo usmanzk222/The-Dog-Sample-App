@@ -1,0 +1,21 @@
+package com.usman.mvvmsample.dagger.module
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.usman.mvvmsample.dagger.ViewModelFactory
+import com.usman.mvvmsample.dagger.annotations.ViewModelKey
+import com.usman.mvvmsample.features.ui.main.MainViewModel
+import dagger.Binds
+import dagger.Module
+import dagger.multibindings.IntoMap
+
+/**
+ * Created by Muhammad Usman on 11/15/2018.
+ */
+
+@Module
+abstract class ViewModelModule {
+
+    @Binds
+    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+}
