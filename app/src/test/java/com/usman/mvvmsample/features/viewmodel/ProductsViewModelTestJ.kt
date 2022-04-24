@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.usman.mvvmsample.core.NetworkResponse
-import com.usman.mvvmsample.features.model.Product
+import com.usman.mvvmsample.features.model.DogBreeds
 import com.usman.mvvmsample.features.repository.MainRepository
 import com.usman.mvvmsample.features.ui.main.MainViewModel
 import com.usman.mvvmsample.util.getOrAwaitValue
@@ -37,7 +37,7 @@ class ProductsViewModelTestJ {
     private lateinit var repository: MainRepository
 
     @MockK
-    private lateinit var observer: Observer<NetworkResponse<List<Product>>>
+    private lateinit var observer: Observer<NetworkResponse<List<DogBreeds>>>
 
 
     @Before

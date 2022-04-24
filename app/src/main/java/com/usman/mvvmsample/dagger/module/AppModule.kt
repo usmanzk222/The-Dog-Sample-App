@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
 import com.usman.mvvmsample.MVVMApplication
-import com.usman.mvvmsample.features.model.ProductsDAO
+import com.usman.mvvmsample.features.model.DogBreedsDao
 import com.usman.mvvmsample.persistence.TestAppDatabase
 import dagger.Module
 import dagger.Provides
@@ -57,8 +57,8 @@ class AppModule(private val application: MVVMApplication) {
 
     @Singleton
     @Provides
-    fun provideProductsDAO(database: TestAppDatabase): ProductsDAO {
-        return database.productsDAO()
+    fun provideDogBreedsDao(database: TestAppDatabase): DogBreedsDao {
+        return database.dogBreedsDAO()
     }
 
 

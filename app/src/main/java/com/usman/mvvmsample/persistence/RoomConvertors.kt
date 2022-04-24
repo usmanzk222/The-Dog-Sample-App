@@ -2,22 +2,20 @@ package com.usman.mvvmsample.persistence
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
+import com.usman.mvvmsample.features.model.Image
 
 
 class RoomConvertors {
 
         @TypeConverter
-        inline fun <reified T> fromString(value: String?): ArrayList<T> {
-            val listType: Type = object : TypeToken<List<T>?>() {}.type
-            return Gson().fromJson(value, listType)
+        fun fromString(value: String?): Image{
+            return Gson().fromJson(value, Image::class.java)
         }
 
         @TypeConverter
-        fun <T> fromArrayList(list: List<T>?): String {
+        fun fromObject(obj: Image?): String {
             val gson = Gson()
-            return gson.toJson(list)
+            return gson.toJson(obj, Image::class.java)
         }
 
 }
