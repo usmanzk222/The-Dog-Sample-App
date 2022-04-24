@@ -41,9 +41,11 @@ fun View.notifyWithAction(
     message: String,
     @StringRes actionText: Int,
     action: () -> Any
-) {
-    val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_INDEFINITE)
-    snackBar.setAction(actionText) { _ -> action.invoke() }
-    snackBar.setActionTextColor(ContextCompat.getColor(this.context, android.R.color.holo_red_dark))
-    snackBar.show()
+): Snackbar {
+    return Snackbar.make(this, message, Snackbar.LENGTH_INDEFINITE).apply {
+        setAction(actionText) { _ -> action.invoke() }
+        setActionTextColor(ContextCompat.getColor(this.context, android.R.color.holo_red_dark))
+        show()
+    }
+
 }

@@ -15,7 +15,7 @@ data class DogBreeds(
     @SerializedName("bred_for")
     val bredFor: String,
     @SerializedName("breed_group")
-    val breedGroup: String,
+    val breedGroup: String?,
     @Embedded(prefix = "height_")
     @SerializedName("height")
     val height: Measurement,

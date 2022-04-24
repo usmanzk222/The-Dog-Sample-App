@@ -29,7 +29,7 @@ class AppModule(private val application: MVVMApplication) {
 
     @Provides
     @Singleton
-    fun provideApplication(application: MVVMApplication): Application {
+    fun provideApplication(): Application {
         return application
     }
 

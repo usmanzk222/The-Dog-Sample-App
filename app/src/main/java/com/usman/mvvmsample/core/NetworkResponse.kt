@@ -9,8 +9,8 @@ data class NetworkResponse<T>(val status: Status,
 
     companion object {
 
-        fun <T> success(data: T): NetworkResponse<T> {
-            return NetworkResponse(Status.SUCCESS, data, null)
+        fun <T> success(data: T, message: String? = null): NetworkResponse<T> {
+            return NetworkResponse(Status.SUCCESS, data, null, message)
         }
 
         fun <T> error(msg: String, data: T? = null): NetworkResponse<T> {
