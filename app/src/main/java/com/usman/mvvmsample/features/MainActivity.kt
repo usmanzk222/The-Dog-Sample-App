@@ -1,9 +1,7 @@
 package com.usman.mvvmsample.features
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -12,8 +10,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.usman.mvvmsample.MVVMApplication
 import com.usman.mvvmsample.R
 import com.usman.mvvmsample.dagger.module.MainActivityComponent
-import com.usman.mvvmsample.features.ui.main.MainViewModel
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,9 +20,6 @@ class MainActivity : AppCompatActivity() {
             .getAppComponent()
             .mainActivityComponent().create()
     }
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    val viewModel: MainViewModel by viewModels<MainViewModel> {viewModelFactory  }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         mainComponent.inject(this)

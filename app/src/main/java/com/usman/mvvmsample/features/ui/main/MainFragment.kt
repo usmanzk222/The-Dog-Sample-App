@@ -12,7 +12,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import com.usman.mvvmsample.R
 import com.usman.mvvmsample.core.Status
 import com.usman.mvvmsample.databinding.MainFragmentBinding
 import com.usman.mvvmsample.features.MainActivity
@@ -23,7 +25,7 @@ class MainFragment : Fragment(), DogsBreedAdapter.ItemClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    val viewModel: MainViewModel by activityViewModels {viewModelFactory  }
+    val viewModel: MainViewModel by navGraphViewModels(R.id.nav_graph) {viewModelFactory  }
 
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!

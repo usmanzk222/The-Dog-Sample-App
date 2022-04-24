@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import androidx.transition.TransitionInflater
 import com.usman.mvvmsample.databinding.FragmentDetailBinding
 import com.usman.mvvmsample.features.MainActivity
@@ -20,8 +21,8 @@ class DetailFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    val viewModel: MainViewModel by activityViewModels { viewModelFactory }
-    val args: DetailFragmentArgs by navArgs()
+    val viewModel: MainViewModel by navGraphViewModels(R.id.nav_graph) {viewModelFactory  }
+    private val args: DetailFragmentArgs by navArgs()
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!

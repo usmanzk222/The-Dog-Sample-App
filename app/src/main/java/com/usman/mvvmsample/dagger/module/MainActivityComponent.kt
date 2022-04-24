@@ -6,7 +6,7 @@ import com.usman.mvvmsample.features.ui.main.MainFragment
 import dagger.Subcomponent
 
 /**
- * Created by Muhammad Usman on 01/31/2019.
+ * Created by Muhammad Usman on 21/04/2022.
  */
 
 @MainActivityScope
