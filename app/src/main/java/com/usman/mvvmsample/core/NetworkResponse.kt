@@ -2,7 +2,7 @@ package com.usman.mvvmsample.core
 
 import com.google.gson.annotations.SerializedName
 
-data class NetworkResponse<T>(val status: Status = Status.IDLE,
+data class NetworkResponse<T>(val status: Status,
                          val data: T? = null,
                          val meta: Meta? = null,
                          val message: String? = null) {
@@ -33,8 +33,6 @@ data class Meta(
 )
 
 enum class Status {
-    @SerializedName("idle")
-    IDLE,
     @SerializedName("loading")
     LOADING,
     @SerializedName("ok")

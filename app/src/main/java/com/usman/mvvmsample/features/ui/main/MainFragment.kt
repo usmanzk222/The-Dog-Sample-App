@@ -1,77 +1,45 @@
 package com.usman.mvvmsample.features.ui.main
 
 import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.doOnPreDraw
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.usman.mvvmsample.R
-import com.usman.mvvmsample.core.Status
+import com.usman.mvvmsample.core.BaseFragment
 import com.usman.mvvmsample.databinding.MainFragmentBinding
 import com.usman.mvvmsample.features.MainActivity
 import com.usman.mvvmsample.features.model.DogBreeds
-import javax.inject.Inject
+import com.usman.mvvmsample.utils.handleNetworkResponse
+import com.usman.mvvmsample.utils.notifyWithAction
 
-class MainFragment : Fragment(), DogsBreedAdapter.ItemClickListener {
+class MainFragment : BaseFragment<MainFragmentBinding>(R.layout.main_fragment),
+    DogsBreedAdapter.ItemClickListener {
+    val viewModel: MainViewModel by navGraphViewModels(R.id.nav_graph) { viewModelFactory }
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    val viewModel: MainViewModel by navGraphViewModels(R.id.nav_graph) {viewModelFactory  }
-
-    private var _binding: MainFragmentBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if( context is MainActivity){
+    override fun inject(context: Context) {
+        if (context is MainActivity) {
             context.mainComponent.inject(this)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        postponeEnterTransition()
-        _binding = MainFragmentBinding.inflate(inflater,container,false)
-        return binding.root
-    }
+    override fun initialize() {
+        super.initialize()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.doOnPreDraw {
-            startPostponedEnterTransition()
-        }
-        viewModel.liveData.observe(viewLifecycleOwner){
-            when(it.status){
-                Status.SUCCESS -> {
-                    binding.progressBar.isVisible = false
-                    inflateItems(it.data)
-                }
-                Status.ERROR -> {
-                    binding.progressBar.isVisible = false
-                }
-                else -> {
-                    binding.progressBar.isVisible = true
-                }
-            }
-        }
+        viewModel.liveData.handleNetworkResponse(viewLifecycleOwner,
+            binding.progressBar,
+            onSuccess = { inflateItems(it) },
+            onError = {
+                binding.root.notifyWithAction(it, R.string.retry) { viewModel.fetchData() }
+            })
     }
 
     private fun inflateItems(list: List<DogBreeds>?) {
         list?.let {
             val layoutManager = GridLayoutManager(context, 2)
             binding.recyclerView.layoutManager = layoutManager
-            binding.recyclerView.adapter = DogsBreedAdapter(it,this)
+            binding.recyclerView.adapter = DogsBreedAdapter(it, this)
 
         }
     }
@@ -80,11 +48,9 @@ class MainFragment : Fragment(), DogsBreedAdapter.ItemClickListener {
         val extras = FragmentNavigatorExtras(
             view to "${item.id}"
         )
-        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(item.id), extras)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        findNavController().navigate(
+            MainFragmentDirections.actionMainFragmentToDetailFragment(item.id),
+            extras
+        )
     }
 }

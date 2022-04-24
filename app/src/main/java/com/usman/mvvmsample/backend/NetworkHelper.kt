@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.usman.mvvmsample.core.NetworkResponse
-import com.usman.mvvmsample.core.Status
 import kotlinx.coroutines.Dispatchers
-import java.lang.Exception
 import java.net.UnknownHostException
 import javax.inject.Inject
 import javax.inject.Named

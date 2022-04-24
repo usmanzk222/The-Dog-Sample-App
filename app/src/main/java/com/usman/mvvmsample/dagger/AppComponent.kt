@@ -1,6 +1,5 @@
 package com.usman.mvvmsample.dagger
 
-import androidx.lifecycle.ViewModelProvider
 import com.usman.mvvmsample.dagger.module.AppModule
 import com.usman.mvvmsample.dagger.module.MainActivityComponent
 import com.usman.mvvmsample.dagger.module.NetworkModule

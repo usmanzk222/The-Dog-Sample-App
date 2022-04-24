@@ -23,6 +23,10 @@ class MainViewModel @Inject constructor(private val repo: MainRepository) : View
     }
 
     init {
+        fetchData()
+    }
+
+    fun fetchData(){
         getData.value = Event(Unit)
     }
 
