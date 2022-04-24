@@ -22,8 +22,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClickListener="@{()-> itemClickListener.onItemClicked(item)}">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imgDog"
@@ -36,7 +35,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:setImage="@{item.image.url}"
-                tools:src="@mipmap/ic_launcher"/>
+                tools:src="@mipmap/ic_launcher"
+                android:onClickListener="@{(view)-> itemClickListener.onItemClicked(item, view)}"/>
 
             <TextView
                 android:id="@+id/tvBreedName"

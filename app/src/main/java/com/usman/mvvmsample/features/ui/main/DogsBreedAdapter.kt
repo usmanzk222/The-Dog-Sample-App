@@ -1,6 +1,7 @@
 package com.usman.mvvmsample.features.ui.main
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -33,12 +34,13 @@ class DogsBreedAdapter(private var list: List<DogBreeds>,
     class DogsBreedViewHolder(private val binding: ItemDogBreedBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DogBreeds, itemClickListener: ItemClickListener){
             binding.item = item
+            binding.imgDog.transitionName = "${item.id}"
             binding.itemClickListener = itemClickListener
             binding.executePendingBindings()
         }
     }
 
     interface ItemClickListener{
-        fun onItemClicked(item: DogBreeds)
+        fun onItemClicked(item: DogBreeds, view: View)
     }
 }

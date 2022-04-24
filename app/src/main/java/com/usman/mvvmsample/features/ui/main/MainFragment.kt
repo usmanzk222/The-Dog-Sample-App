@@ -5,15 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.usman.mvvmsample.R
 import com.usman.mvvmsample.core.Status
 import com.usman.mvvmsample.databinding.MainFragmentBinding
 import com.usman.mvvmsample.features.MainActivity
@@ -40,12 +39,16 @@ class MainFragment : Fragment(), DogsBreedAdapter.ItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        postponeEnterTransition()
         _binding = MainFragmentBinding.inflate(inflater,container,false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        view.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
         viewModel.liveData.observe(viewLifecycleOwner){
             when(it.status){
                 Status.SUCCESS -> {
@@ -71,8 +74,11 @@ class MainFragment : Fragment(), DogsBreedAdapter.ItemClickListener {
         }
     }
 
-    override fun onItemClicked(item: DogBreeds) {
-        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(item.id))
+    override fun onItemClicked(item: DogBreeds, view: View) {
+        val extras = FragmentNavigatorExtras(
+            view to "${item.id}"
+        )
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(item.id), extras)
     }
 
     override fun onDestroyView() {

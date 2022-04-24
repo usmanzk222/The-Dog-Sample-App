@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import com.usman.mvvmsample.databinding.FragmentDetailBinding
 import com.usman.mvvmsample.features.MainActivity
 import com.usman.mvvmsample.features.ui.main.MainViewModel
@@ -35,6 +36,9 @@ class DetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.getDogDetail(args.breedId)
+        sharedElementEnterTransition = TransitionInflater.from(requireActivity()).inflateTransition(android.R.transition.move)
+        sharedElementReturnTransition = TransitionInflater.from(requireActivity()).inflateTransition(android.R.transition.move)
+        postponeEnterTransition()
     }
 
     override fun onCreateView(
@@ -48,9 +52,15 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.imgDog.transitionName = "${args.breedId}"
         viewModel.detailLiveData.observe(viewLifecycleOwner){
-            binding.dogBreed = it
-            (activity as AppCompatActivity).supportActionBar?.title = it?.name
+            it?.let { breed ->
+                binding.dogBreed = breed
+                startPostponedEnterTransition()
+                (activity as AppCompatActivity).supportActionBar?.title = breed.name
+            }?: kotlin.run {
+                startPostponedEnterTransition()
+            }
         }
     }
 

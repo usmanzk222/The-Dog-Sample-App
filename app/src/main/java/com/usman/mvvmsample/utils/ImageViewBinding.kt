@@ -2,7 +2,7 @@ package com.usman.mvvmsample.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import com.usman.mvvmsample.R
 
 
@@ -11,6 +11,8 @@ fun ImageView.setImage(imagePath: String?) {
     if (imagePath.isNullOrEmpty())
         setImageResource(R.drawable.ic_launcher_foreground)
     else
-        Glide.with(this).load(imagePath).placeholder(R.drawable.ic_launcher_foreground).into(this)
-
+        Picasso.get()
+            .load(imagePath)
+            .placeholder(android.R.drawable.screen_background_light)
+            .into(this)
 }
