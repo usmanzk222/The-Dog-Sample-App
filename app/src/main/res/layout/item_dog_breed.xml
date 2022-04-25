@@ -40,14 +40,14 @@
 
             <TextView
                 android:id="@+id/tvBreedName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_small"
+                android:padding="@dimen/margin_extra_small"
                 android:text="@{item.name}"
                 android:textStyle="bold"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:gravity="start"
+                android:gravity="center"
                 android:textColor="@android:color/white"
                 android:background="@color/cardview_shadow_start_color"
                 app:layout_constraintEnd_toEndOf="@id/imgDog"

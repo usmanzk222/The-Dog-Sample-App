@@ -35,7 +35,7 @@ class NetworkHelperTest {
 
 
     interface Delegation {
-        suspend fun serviceCall(): NetworkResponse<String>
+        suspend fun serviceCall(): String?
         suspend fun saveResult(s: String)
         fun localResult(): MutableLiveData<String>
     }
@@ -44,7 +44,7 @@ class NetworkHelperTest {
     private lateinit var delegation: Delegation
     private val LOCAL_RESULT = "Local Result"
     private val REMOTE_RESULT = "Remote Result"
-    private val REMOTE_ERROR = "Remote Result"
+    private val ERROR_RESULT = null
 
 
     @Before
@@ -62,19 +62,22 @@ class NetworkHelperTest {
     fun `should call local and then load data from remote and save it`()= mainCoroutineRule.runBlockingTest{
 
         every { delegation.localResult() } returns MutableLiveData(LOCAL_RESULT)
-        coEvery { delegation.serviceCall() } returns NetworkResponse.success(REMOTE_RESULT)
+        coEvery { delegation.serviceCall() } returns REMOTE_RESULT
 
         networkHelper.getDataFromService({ delegation.localResult() },{ str -> delegation.saveResult(str)},{delegation.serviceCall()} ).getOrAwaitValue()
-        verify(atLeast = 1) { delegation.localResult() }
-        coVerify(atLeast = 1) { delegation.serviceCall() }
-        coVerify(atLeast = 1) { delegation.saveResult(REMOTE_RESULT) }
+
+        coVerifyOrder {
+            delegation.localResult()
+            delegation.serviceCall()
+            delegation.saveResult(REMOTE_RESULT)
+        }
     }
 
     @Test
     fun `skip call to saveResult in case of error`()= mainCoroutineRule.runBlockingTest{
 
         every { delegation.localResult() } returns MutableLiveData(LOCAL_RESULT)
-        coEvery { delegation.serviceCall() } returns NetworkResponse.error(REMOTE_ERROR)
+        coEvery { delegation.serviceCall() } returns ERROR_RESULT
 
         networkHelper.getDataFromService({ delegation.localResult() },{ str -> delegation.saveResult(str)},{delegation.serviceCall()} ).getOrAwaitValue()
         verify(exactly = 1) { delegation.localResult() }
@@ -88,7 +91,7 @@ class NetworkHelperTest {
     fun `emit loading and success`()= mainCoroutineRule.runBlockingTest{
 
         every { delegation.localResult() } returns MutableLiveData(LOCAL_RESULT)
-        coEvery { delegation.serviceCall() } returns NetworkResponse.success(REMOTE_RESULT)
+        coEvery { delegation.serviceCall() } returns REMOTE_RESULT
 
         val result:LiveData<NetworkResponse<String>> = networkHelper.getDataFromService({ delegation.localResult() },{ str -> delegation.saveResult(str)},{delegation.serviceCall()} )
         //then
@@ -102,7 +105,7 @@ class NetworkHelperTest {
     fun `in case of error first emit loading then emit error and finally data from local`()= mainCoroutineRule.runBlockingTest{
 
         every { delegation.localResult() } returns MutableLiveData(LOCAL_RESULT)
-        coEvery { delegation.serviceCall() } returns NetworkResponse.error(REMOTE_ERROR)
+        coEvery { delegation.serviceCall() } returns ERROR_RESULT
 
         val result:LiveData<NetworkResponse<String>> = networkHelper.getDataFromService({ delegation.localResult() },{ str -> delegation.saveResult(str)},{delegation.serviceCall()} )
         //then

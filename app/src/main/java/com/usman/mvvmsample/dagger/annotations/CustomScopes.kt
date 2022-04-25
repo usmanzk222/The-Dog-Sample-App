@@ -1,4 +1,4 @@
-package com.usman.mvvmsample.dagger.module
+package com.usman.mvvmsample.dagger.annotations
 
 import javax.inject.Scope
 

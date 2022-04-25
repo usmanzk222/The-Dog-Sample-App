@@ -9,7 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.usman.mvvmsample.MVVMApplication
 import com.usman.mvvmsample.R
-import com.usman.mvvmsample.dagger.module.MainActivityComponent
+import com.usman.mvvmsample.dagger.components.MainActivityComponent
 
 class MainActivity : AppCompatActivity() {
 
