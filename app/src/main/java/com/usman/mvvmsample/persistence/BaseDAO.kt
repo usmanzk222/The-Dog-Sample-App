@@ -5,12 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Update
-import kotlinx.coroutines.flow.Flow
 
-
-/**
- * Created by Muhammad Usman on 3/8/2019.
- */
 interface BaseDAO <EN> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

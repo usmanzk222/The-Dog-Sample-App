@@ -1,11 +1,11 @@
 package com.usman.mvvmsample.core
 
 
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 
 abstract class BaseActivity<DB:ViewDataBinding,VM:BaseViewModel>(mViewModelClass: Class<VM>) : AppCompatActivity() {
@@ -15,7 +15,7 @@ abstract class BaseActivity<DB:ViewDataBinding,VM:BaseViewModel>(mViewModelClass
 
     lateinit var binding:DB
 
-    val viewModel by lazy {
+    val viewModel: VM by lazy {
         ViewModelProvider(this, getVMFactory())[mViewModelClass]
     }
 

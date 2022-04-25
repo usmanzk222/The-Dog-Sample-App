@@ -1,8 +1,7 @@
 package com.usman.mvvmsample.dagger.module
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.usman.mvvmsample.dagger.ViewModelFactory
+import com.usman.mvvmsample.dagger.annotations.MainActivityScope
 import com.usman.mvvmsample.dagger.annotations.ViewModelKey
 import com.usman.mvvmsample.features.ui.main.MainViewModel
 import dagger.Binds

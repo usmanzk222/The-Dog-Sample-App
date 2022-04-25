@@ -1,13 +1,12 @@
-package com.usman.mvvmsample.dagger.module
+package com.usman.mvvmsample.dagger.components
 
 import com.usman.mvvmsample.DetailFragment
+import com.usman.mvvmsample.dagger.annotations.MainActivityScope
+import com.usman.mvvmsample.dagger.module.MainViewModelModule
 import com.usman.mvvmsample.features.MainActivity
 import com.usman.mvvmsample.features.ui.main.MainFragment
 import dagger.Subcomponent
 
-/**
- * Created by Muhammad Usman on 01/31/2019.
- */
 
 @MainActivityScope
 @Subcomponent(modules = [MainViewModelModule::class])

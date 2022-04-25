@@ -2,15 +2,15 @@ package com.usman.mvvmsample.core
 
 import com.google.gson.annotations.SerializedName
 
-data class NetworkResponse<T>(val status: Status = Status.IDLE,
+data class NetworkResponse<T>(val status: Status,
                          val data: T? = null,
                          val meta: Meta? = null,
                          val message: String? = null) {
 
     companion object {
 
-        fun <T> success(data: T): NetworkResponse<T> {
-            return NetworkResponse(Status.SUCCESS, data, null)
+        fun <T> success(data: T, message: String? = null): NetworkResponse<T> {
+            return NetworkResponse(Status.SUCCESS, data, null, message)
         }
 
         fun <T> error(msg: String, data: T? = null): NetworkResponse<T> {
@@ -33,8 +33,6 @@ data class Meta(
 )
 
 enum class Status {
-    @SerializedName("idle")
-    IDLE,
     @SerializedName("loading")
     LOADING,
     @SerializedName("ok")

@@ -12,7 +12,7 @@ class MainViewModel @Inject constructor(private val repo: MainRepository) : View
     private val getData = MutableLiveData<Event<Unit>>()
     private val getDetailEvent = MutableLiveData<Event<Int>>()
 
-    val liveData: LiveData<NetworkResponse<List<DogBreeds>?>> = Transformations.switchMap(getData) {
+    val liveData: LiveData<NetworkResponse<List<DogBreeds>>> = Transformations.switchMap(getData) {
         repo.getData()
     }
 
@@ -23,6 +23,10 @@ class MainViewModel @Inject constructor(private val repo: MainRepository) : View
     }
 
     init {
+        fetchData()
+    }
+
+    fun fetchData(){
         getData.value = Event(Unit)
     }
 

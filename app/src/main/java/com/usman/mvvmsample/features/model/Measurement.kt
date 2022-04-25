@@ -1,7 +1,6 @@
 package com.usman.mvvmsample.features.model
 
-
-data class Weight(
+data class Measurement(
     val imperial: String,
     val metric: String
 )

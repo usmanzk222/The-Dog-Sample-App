@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.usman.mvvmsample.core.NetworkResponse
-import com.usman.mvvmsample.core.Status
 import kotlinx.coroutines.Dispatchers
-import java.lang.Exception
 import java.net.UnknownHostException
 import javax.inject.Inject
 import javax.inject.Named
@@ -38,7 +36,7 @@ class NetworkHelper @Inject constructor(
     fun <T> getDataFromService(
         localResult: (() -> LiveData<T>) = { MutableLiveData() },
         saveResponse: suspend (T) -> Unit = { },
-        serviceCall: suspend () -> NetworkResponse<T>?
+        serviceCall: suspend () -> T?
     ): LiveData<NetworkResponse<T>> {
         return liveData(coroutineContext) {
             emit(NetworkResponse.loading())
@@ -47,14 +45,14 @@ class NetworkHelper @Inject constructor(
             }
             try {
                 val response = serviceCall.invoke()
-                response?.data?.let { data ->
+                response?.let { data ->
                     saveResponse(data)
                 } ?: kotlin.run {
                     throw Exception("Invalid Response")
                 }
             }catch (e: Exception){
                 if(e is UnknownHostException) {
-                    emit(NetworkResponse.error("Error in connection"))
+                    emit(NetworkResponse.error("Network connection failed"))
                 }else
                     emit(NetworkResponse.error(e.localizedMessage?:"Something went wrong"))
             }finally {

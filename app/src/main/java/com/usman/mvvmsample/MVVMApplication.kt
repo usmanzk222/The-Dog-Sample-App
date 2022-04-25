@@ -1,8 +1,8 @@
 package com.usman.mvvmsample
 
 import android.app.Application
-import com.usman.mvvmsample.dagger.AppComponent
-import com.usman.mvvmsample.dagger.DaggerAppComponent
+import com.usman.mvvmsample.dagger.components.AppComponent
+import com.usman.mvvmsample.dagger.components.DaggerAppComponent
 import com.usman.mvvmsample.dagger.module.AppModule
 
 /**
