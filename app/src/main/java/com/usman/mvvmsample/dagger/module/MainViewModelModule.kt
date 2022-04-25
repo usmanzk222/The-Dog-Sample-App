@@ -3,7 +3,7 @@ package com.usman.mvvmsample.dagger.module
 import androidx.lifecycle.ViewModel
 import com.usman.mvvmsample.dagger.annotations.MainActivityScope
 import com.usman.mvvmsample.dagger.annotations.ViewModelKey
-import com.usman.mvvmsample.features.ui.main.MainViewModel
+import com.usman.mvvmsample.features.main.ui.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

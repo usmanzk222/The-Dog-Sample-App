@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
 import com.usman.mvvmsample.MVVMApplication
-import com.usman.mvvmsample.features.model.DogBreedsDao
+import com.usman.mvvmsample.features.main.model.DogBreedsDao
 import com.usman.mvvmsample.persistence.TestAppDatabase
 import dagger.Module
 import dagger.Provides

@@ -6,10 +6,10 @@
     <data>
         <variable
             name="item"
-            type="com.usman.mvvmsample.features.model.DogBreeds" />
+            type="com.usman.mvvmsample.features.main.model.DogBreeds" />
         <variable
             name="itemClickListener"
-            type="com.usman.mvvmsample.features.ui.main.DogsBreedAdapter.ItemClickListener" />
+            type="com.usman.mvvmsample.features.main.ui.DogsBreedAdapter.ItemClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView

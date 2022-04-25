@@ -1,9 +1,9 @@
-package com.usman.mvvmsample.features.ui.main
+package com.usman.mvvmsample.features.main.ui
 
 import androidx.lifecycle.*
 import com.usman.mvvmsample.core.NetworkResponse
-import com.usman.mvvmsample.features.model.DogBreeds
-import com.usman.mvvmsample.features.repository.MainRepository
+import com.usman.mvvmsample.features.main.model.DogBreeds
+import com.usman.mvvmsample.features.main.repository.MainRepository
 import com.usman.mvvmsample.utils.Event
 import javax.inject.Inject
 

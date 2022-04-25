@@ -1,8 +1,8 @@
-package com.usman.mvvmsample.features.repository
+package com.usman.mvvmsample.features.main.repository
 
 import com.usman.mvvmsample.apicalls.ServiceGateway
 import com.usman.mvvmsample.backend.NetworkHelper
-import com.usman.mvvmsample.features.model.DogBreedsDao
+import com.usman.mvvmsample.features.main.model.DogBreedsDao
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val networkHelper: NetworkHelper,

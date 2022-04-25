@@ -1,4 +1,4 @@
-package com.usman.mvvmsample.features
+package com.usman.mvvmsample.features.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package com.usman.mvvmsample
+package com.usman.mvvmsample.features.main.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import androidx.transition.TransitionInflater
+import com.usman.mvvmsample.R
 import com.usman.mvvmsample.core.BaseFragment
 import com.usman.mvvmsample.databinding.FragmentDetailBinding
-import com.usman.mvvmsample.features.MainActivity
-import com.usman.mvvmsample.features.ui.main.MainViewModel
+import com.usman.mvvmsample.features.main.MainActivity
 
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
 
