@@ -1,4 +1,4 @@
-package com.usman.mvvmsample.features.ui.main
+package com.usman.mvvmsample.features.main.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.usman.mvvmsample.R
 import com.usman.mvvmsample.databinding.ItemDogBreedBinding
-import com.usman.mvvmsample.features.model.DogBreeds
+import com.usman.mvvmsample.features.main.model.DogBreeds
 
 class DogsBreedAdapter(private var list: List<DogBreeds>,
-                       private val itemClickListener: ItemClickListener): RecyclerView.Adapter<DogsBreedAdapter.DogsBreedViewHolder>() {
+                       private val itemClickListener: ItemClickListener
+): RecyclerView.Adapter<DogsBreedAdapter.DogsBreedViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogsBreedViewHolder {
         val binding: ItemDogBreedBinding = DataBindingUtil.inflate(

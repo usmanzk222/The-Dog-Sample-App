@@ -1,4 +1,4 @@
-package com.usman.mvvmsample.features.model
+package com.usman.mvvmsample.features.main.model
 
 import androidx.room.Embedded
 import androidx.room.Entity

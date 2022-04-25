@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".DetailFragment">
+    tools:context=".features.main.ui.DetailFragment">
 
     <data>
 
         <variable
             name="dogBreed"
-            type="com.usman.mvvmsample.features.model.DogBreeds" />
+            type="com.usman.mvvmsample.features.main.model.DogBreeds" />
     </data>
 
     <androidx.core.widget.NestedScrollView

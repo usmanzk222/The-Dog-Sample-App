@@ -1,6 +1,6 @@
 package com.usman.mvvmsample.apicalls
 
-import com.usman.mvvmsample.features.model.DogBreeds
+import com.usman.mvvmsample.features.main.model.DogBreeds
 import com.usman.mvvmsample.utils.Constants
 import retrofit2.http.GET
 import retrofit2.http.Headers

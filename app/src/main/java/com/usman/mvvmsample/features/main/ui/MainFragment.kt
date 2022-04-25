@@ -1,4 +1,4 @@
-package com.usman.mvvmsample.features.ui.main
+package com.usman.mvvmsample.features.main.ui
 
 import android.content.Context
 import android.view.View
@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.usman.mvvmsample.R
 import com.usman.mvvmsample.core.BaseFragment
 import com.usman.mvvmsample.databinding.MainFragmentBinding
-import com.usman.mvvmsample.features.MainActivity
-import com.usman.mvvmsample.features.model.DogBreeds
+import com.usman.mvvmsample.features.main.MainActivity
+import com.usman.mvvmsample.features.main.model.DogBreeds
 import com.usman.mvvmsample.utils.handleNetworkResponse
 import com.usman.mvvmsample.utils.notifyWithAction
 

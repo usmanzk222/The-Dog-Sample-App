@@ -2,7 +2,7 @@ package com.usman.mvvmsample.persistence
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.usman.mvvmsample.features.model.Image
+import com.usman.mvvmsample.features.main.model.Image
 
 
 class RoomConvertors {

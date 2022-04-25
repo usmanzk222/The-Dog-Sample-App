@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.usman.mvvmsample.core.NetworkResponse
-import com.usman.mvvmsample.features.model.DogBreeds
-import com.usman.mvvmsample.features.repository.MainRepository
-import com.usman.mvvmsample.features.ui.main.MainViewModel
+import com.usman.mvvmsample.features.main.model.DogBreeds
+import com.usman.mvvmsample.features.main.repository.MainRepository
+import com.usman.mvvmsample.features.main.ui.MainViewModel
 import com.usman.mvvmsample.util.getOrAwaitValue
 import io.mockk.MockKAnnotations
 import io.mockk.every

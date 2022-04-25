@@ -1,4 +1,4 @@
-package com.usman.mvvmsample.features.model
+package com.usman.mvvmsample.features.main.model
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
